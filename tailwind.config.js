@@ -1,7 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-
 const { fontFamily } = require("tailwindcss/defaultTheme");
-module.exports = {
+
+const config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,jsx}",
@@ -16,9 +15,29 @@ module.exports = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        xs: "360px",
       },
     },
     extend: {
+      colors: {
+        blue: {
+          100: "#B4C6EE",
+          400: "#417BFF",
+          500: "#3371FF",
+        },
+        red: {
+          400: "#DD4F56",
+          500: "#DC4349",
+        },
+        dark: {
+          100: "#09111F",
+          200: "#0B1527",
+          300: "#0F1C34",
+          350: "#12213B",
+          400: "#27344D",
+          500: "#2E3D5B",
+        },
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
@@ -32,6 +51,10 @@ module.exports = {
           to: { height: "0" },
         },
       },
+      backgroundImage: {
+        doc: "url(/assets/images/doc.png)",
+        modal: "url(/assets/images/modal.png)",
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
@@ -40,3 +63,5 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate")],
 };
+
+module.exports = config;
