@@ -9,7 +9,7 @@ import AddDocumentBtn from "@/components/AddDocumentBtn";
 
 const Home = async () => {
   const clerkUser = await currentUser();
-  console.log(clerkUser.emailAddresses[0].emailAddress, "sdfsgf");
+  console.log(clerkUser?.emailAddresses[0].emailAddress, "sdfsgf");
 
   if (!clerkUser) redirect("/sign-in");
 

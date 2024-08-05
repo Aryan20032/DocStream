@@ -1,18 +1,39 @@
 "use client";
 import { RoomProvider, ClientSideSuspense } from "@liveblocks/react/suspense";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Editor } from "@/components/editor/Editor";
 import Header from "@/components/Header";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import ActiveCollaborators from "./ActiveCollaborators";
+import { Input } from "./ui/input";
 
-const CollaborativeRoom = () => {
+const CollaborativeRoom = ({ roomId, roomMetadata }) => {
+  console.log("roomMetadata", roomMetadata);
+  if (roomMetadata) {
+    const title = roomMetadata.title;
+  }
+  const [editing, setEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [documentTitle, setDocumentTitle] = useState(roomMetadata?.title);
+
+  const containerRef = useRef(null);
+  const inputRef = useRef(null);
+
   return (
-    <RoomProvider id="my-room">
+    <RoomProvider id={roomId}>
       <ClientSideSuspense fallback={<div>Loading…</div>}>
         <Header>
-          <div className="flex w-fit items-center justify-center gap-2">
-            <p className="document-title">share</p>
+          <div
+            ref={containerRef}
+            className="flex w-fit items-center justify-center gap-2"
+          >
+            {editing && !loading ? (
+              <Input />
+            ) : (
+              <>
+                <p className="document-title">{documentTitle}</p>
+              </>
+            )}
           </div>
           <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
             <ActiveCollaborators />
