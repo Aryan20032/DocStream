@@ -23,7 +23,7 @@ const Comments = () => {
   const { threads } = useThreads();
 
   if (!threads) {
-    return <div className="text-blue-100">Loading Comments...</div>; // Fallback UI while threads are being fetched
+    return <div className="text-blue-100">Loading Comments...</div>;
   }
 
   return (
