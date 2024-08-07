@@ -79,7 +79,7 @@ body {
   overflow: hidden;
   position: absolute;
   text-overflow: ellipsis;
-  top: 24%;
+  top: 40px;
   left: 40px;
   font-size: 15px;
   user-select: none;
