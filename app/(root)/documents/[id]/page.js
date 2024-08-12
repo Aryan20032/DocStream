@@ -17,12 +17,24 @@ const document = async ({ params: { id } }) => {
   if (!room) redirect("/");
   const userIds = Object.keys(room.usersAccesses);
   const users = await getClerkUsers({ userIds });
-  const usersData = users.map((user) => ({
-    ...user,
-    userType: room.usersAccesses[user.email]?.includes("room:write")
-      ? "editor"
-      : "viewer",
-  }));
+  const usersData = users.map((user) => {
+    if (!user || !user.email) {
+      // Handle the case where user or user.email is null/undefined
+      return {
+        ...user,
+        userType: "viewer", // Default to 'viewer' or handle as needed
+      };
+    }
+
+    return {
+      ...user,
+      userType: room.usersAccesses[user.email]?.includes("room:write")
+        ? "editor"
+        : "viewer",
+    };
+  });
+
+  console.log("usersData", room.usersAccesses);
   const currentUserType = room.usersAccesses[
     clerkUser.emailAddresses[0].emailAddress
   ]?.includes("room:write")
