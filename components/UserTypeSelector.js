@@ -9,9 +9,8 @@ import {
 const UserTypeSelector = ({ userType, setUserType, onClickHandler }) => {
   const accessChangeHandler = (type) => {
     setUserType(type);
-    if (onClickHandler) {
-      onClickHandler(type);
-    }
+
+    onClickHandler && onClickHandler(type);
   };
 
   return (

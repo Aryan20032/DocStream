@@ -37,10 +37,14 @@ const ShareModal = ({ roomId, collaborators, creatorId, currentUserType }) => {
     setLoading(false);
   };
 
-  const openModal = () => {};
+  const handleOpenChange = (isOpen) => {
+    if (currentUserType === "editor") {
+      setOpen(isOpen);
+    }
+  };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger>
         <Button
           className="gradient-blue flex h-9 gap-1 px-4"

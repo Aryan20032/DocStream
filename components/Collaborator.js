@@ -10,23 +10,28 @@ import {
 const Collaborator = ({ roomId, creatorId, collaborator, email, user }) => {
   const [userType, setUserType] = useState(collaborator.userType || "viewer");
   const [loading, setLoading] = useState(false);
+
   const shareDocumentHandler = async (type) => {
     setLoading(true);
 
     await updateDocumentAccess({
       roomId,
-      email,
-      userType: userType,
-      updatedBy: user.info,
+      email: collaborator.email,
+      userType: type,
+      updatedBy: user,
     });
 
     setLoading(false);
   };
+
   const removeCollaboratorHandler = async (email) => {
     setLoading(true);
+
     await removeCollaborator({ roomId, email });
+
     setLoading(false);
   };
+
   return (
     <li className="flex items-center justify-between gap-2 py-3">
       <div className="flex gap-2">
@@ -38,7 +43,7 @@ const Collaborator = ({ roomId, creatorId, collaborator, email, user }) => {
           className="size-9 rounded-full"
         />
         <div>
-          <p className="line clamp-1 text-sm font-semibold leading-4 text-white">
+          <p className="line-clamp-1 text-sm font-semibold leading-4 text-white">
             {collaborator.name}
             <span className="text-10-regular pl-2 text-blue-100">
               {loading && "updating..."}
@@ -51,7 +56,7 @@ const Collaborator = ({ roomId, creatorId, collaborator, email, user }) => {
       </div>
 
       {creatorId === collaborator.id ? (
-        <p className=" text-sm text-blue-100">Owner</p>
+        <p className="text-sm text-blue-100">Owner</p>
       ) : (
         <div className="flex items-center">
           <UserTypeSelector

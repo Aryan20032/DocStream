@@ -33,8 +33,8 @@ const document = async ({ params: { id } }) => {
         : "viewer",
     };
   });
+  console.log("room", room.usersAccesses);
 
-  console.log("usersData", room.usersAccesses);
   const currentUserType = room.usersAccesses[
     clerkUser.emailAddresses[0].emailAddress
   ]?.includes("room:write")
