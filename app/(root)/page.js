@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+// import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
@@ -11,6 +11,7 @@ import Link from "next/link";
 import { dateConverter } from "@/lib/utils";
 import { DeleteModal } from "@/components/DeleteModal";
 import Notification from "@/components/Notifications";
+import Header from "../../components/Header";
 
 const Home = async () => {
   const clerkUser = await currentUser();

@@ -2,7 +2,7 @@
 import { RoomProvider, ClientSideSuspense } from "@liveblocks/react/suspense";
 import React, { useEffect, useRef, useState } from "react";
 import { Editor } from "@/components/editor/Editor";
-import Header from "@/components/Header";
+import Header from "./Header";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import ActiveCollaborators from "./ActiveCollaborators";
 import { Input } from "./ui/input";
